@@ -2,7 +2,7 @@
 
 
 import time
-import picamera
+import libcamera
 import RPi.GPIO as GPIO
 
 # Set up GPIO
