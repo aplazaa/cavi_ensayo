@@ -2,7 +2,7 @@
 
 
 import time
-import picamera
+import picamera2
 import RPi.GPIO as GPIO
 
 # Set up GPIO
@@ -12,7 +12,7 @@ GPIO.setup(gpio_pin, GPIO.OUT)
 
 # Function to take a picture
 def take_picture():
-    with picamera.PiCamera() as camera:
+    with picamera2.PiCamera() as camera:
         camera.resolution = (640, 480)  # Set desired resolution
         camera.start_preview()
         time.sleep(2)  # Warm-up time
