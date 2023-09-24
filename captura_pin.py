@@ -2,12 +2,13 @@
 
 
 import time
-import libcamera
+import picamera
 import RPi.GPIO as GPIO
 
 # Set up GPIO
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.OUT)  # Example GPIO pin, replace with your own pin
+gpio_pin = 4  # Example GPIO pin, replace with your own pin
+GPIO.setup(gpio_pin, GPIO.OUT)
 
 # Function to take a picture
 def take_picture():
@@ -27,9 +28,9 @@ while True:
         take_picture()
 
         # Toggle GPIO pin
-        GPIO.output(4, GPIO.HIGH)  # Example GPIO pin, replace with your own pin
+        GPIO.output(gpio_pin, GPIO.HIGH)  # Example GPIO pin, replace with your own pin
         time.sleep(1)  # Keep the pin high for 1 second
-        GPIO.output(4, GPIO.LOW)  # Example GPIO pin, replace with your own pin
+        GPIO.output(gpio_pin, GPIO.LOW)  # Example GPIO pin, replace with your own pin
 
         # Wait for 5 minutes
         time.sleep(300)
