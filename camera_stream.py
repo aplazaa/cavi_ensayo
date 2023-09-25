@@ -1,10 +1,18 @@
 import picamera
 import socket
+import RPi.GPIO as GPIO
 
 # Camera settings
 camera = picamera.PiCamera()
 camera.resolution = (640, 480)
 camera.framerate = 30
+
+# Activate the GPIO pins
+GPIO.setmode(GPIO.BCM)
+GPIO_pin_list = [4]  # Choose the GPIO pins you want to use
+for pin in GPIO_pin_list:
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, GPIO.HIGH)
 
 # Socket settings
 server_address = ('localhost', 8000)
@@ -42,3 +50,8 @@ camera.stop_preview()
 
 # Close the socket
 connection.close()
+
+# Deactivate the GPIO pins
+for pin in GPIO_pin_list:
+    GPIO.output(pin, GPIO.LOW)
+    GPIO.cleanup(pin)
